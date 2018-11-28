@@ -42,9 +42,9 @@ struct ToDo: Codable {
     }
     
     static func saveToDos(_ todos: [ToDo]) {
-    let propertyListEncoder = PropertyListEncoder()
-    let codedToDos = try? propertyListEncoder.encode(todos)
-    try? codedToDos?.write(to: ArchiveURL, options: .noFileProtection)
+        let propertyListEncoder = PropertyListEncoder()
+        let codedToDos = try? propertyListEncoder.encode(todos)
+        try? codedToDos?.write(to: ArchiveURL, options: .noFileProtection)
     }
   
     

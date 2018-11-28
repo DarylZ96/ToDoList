@@ -20,9 +20,8 @@ class ToDoCell : UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     
-    @IBAction func completeButtonTapped(_ sender: Any) {  delegate?.checkmarkTapped(sender: self)
-        
-   
+    @IBAction func completeButtonTapped(_ sender: Any) {
+        delegate?.checkmarkTapped(sender: self)
     }
     
     
