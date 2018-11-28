@@ -5,15 +5,15 @@ Project week 5
 
 ![ToDoList](/doc/ToDoList.png)
 
-![NewToDo](/doc/NewToDo .png)
+![NewToDo](/doc/NewToDo.png)
 
 
 
 
 ### Some screenshots of the application in landscape mode
 
-![ToDoList](/doc/ToDoList L.png)
+![ToDoList](/doc/ToDoListL.png)
 
-![NewToDo](/doc/NewToDo L.png)
+![NewToDo](/doc/NewToDoL.png)
 
 
