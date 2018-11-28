@@ -5,7 +5,7 @@ Project week 5
 
 ![ToDoList](/doc/ToDoList.png)
 
-![NewToDo](/doc/NewToDo.png)
+![NewToDo](/doc/NewToDo .png)
 
 
 
