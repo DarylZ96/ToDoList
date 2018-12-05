@@ -17,6 +17,8 @@ class ToDoTableViewController: UITableViewController, ToDoCellDelegate {
         
         navigationItem.leftBarButtonItem = editButtonItem
         
+        // check if there are todos in the directory
+        
         if let savedToDos = ToDo.loadToDos() {
             todos = savedToDos
         } else {
@@ -24,10 +26,14 @@ class ToDoTableViewController: UITableViewController, ToDoCellDelegate {
         }
     }
 
-
-override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return todos.count
-}
+    
+    // Determine the amount of rows
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return todos.count
+    }
+    
+    //Dequeue the cells and set the labels and button.
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCellIdentifier") as? ToDoCell else {
@@ -41,19 +47,24 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
         return cell
     }
     
+    // enable editing
     
-override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    return true
-    }
-
-override func tableView(_ tableView: UITableView, commit editingStyle : UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    
-    if editingStyle == .delete {
-        todos.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .fade)
-        ToDo.saveToDos(todos)
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
         }
-    }
+
+    // update the cells after delete
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle : UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            todos.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            ToDo.saveToDos(todos)
+            }
+        }
+    
+    // save the changes after editing
     
     @IBAction func unwindToToDoList(segue: UIStoryboardSegue) {
         guard segue.identifier == "saveUnwind" else { return }
@@ -73,6 +84,7 @@ override func tableView(_ tableView: UITableView, commit editingStyle : UITableV
 
     }
     
+    //pass data to the ToDoViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
@@ -82,6 +94,7 @@ override func tableView(_ tableView: UITableView, commit editingStyle : UITableV
             todoViewController.todo = selectedTodo
         }
     }
+    
     
     
     func checkmarkTapped(sender: ToDoCell) {
@@ -95,19 +108,5 @@ override func tableView(_ tableView: UITableView, commit editingStyle : UITableV
         }
         
     }
-    
-//    func completeButtonTapped(sender: ToDoCell) {
-//        if let indexPath = tableView.indexPath(for: sender) {
-//            var todo = todos[indexPath.row]
-//            todo.isComplete = !todo.isComplete
-//            tableView.reloadRows(at: [indexPath], with: .automatic)
-//        }
-//    }
-    
-
-
-
-
-
 
 }

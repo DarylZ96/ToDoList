@@ -22,9 +22,13 @@ struct ToDo: Codable {
         return formatter
     }()
     
+    // save user changes to the directory
+    
     static let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("todos").appendingPathExtension("plist")
     
+    
+    // define the document directory
     
     static func loadToDos() -> [ToDo]? {
         guard let codedToDos = try? Data(contentsOf: ArchiveURL)
@@ -40,6 +44,8 @@ struct ToDo: Codable {
         
         return [todo1, todo2, todo3]
     }
+    
+    // save the todos to the document directory
     
     static func saveToDos(_ todos: [ToDo]) {
         let propertyListEncoder = PropertyListEncoder()

@@ -23,6 +23,7 @@ class ToDoViewController : UITableViewController {
     var todo: ToDo?
 
     
+    // Set all the items when the view is loading. If a new todo is created, only set the appropriate time interval.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,8 @@ class ToDoViewController : UITableViewController {
             isCompleteButton.isSelected = todo.isComplete
             dueDatePickerView.date = todo.dueDate
             notesTextView.text = todo.notes
-        } else {
+        }
+        else {
             dueDatePickerView.date = Date().addingTimeInterval(24*60*60)
         }
         
@@ -40,6 +42,8 @@ class ToDoViewController : UITableViewController {
         updateSaveButtonState()
     }
     
+    
+    //update or disable the Save Button
     
     func updateSaveButtonState() {
         let text = titleTextField.text ?? ""
@@ -71,30 +75,30 @@ class ToDoViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
-    let normalCellHeight = CGFloat(44)
-    let largeCellHeight = CGFloat(200)
-    
-    switch(indexPath) {
-    case [1,0]: //Due Date Cell
-        return isPickerHidden ? normalCellHeight :largeCellHeight
-    case [2,0]: //Notes Cell
-        return largeCellHeight
+        let normalCellHeight = CGFloat(44)
+        let largeCellHeight = CGFloat(200)
         
-    default: return normalCellHeight
+        switch(indexPath) {
+        case [1,0]: //Due Date Cell
+            return isPickerHidden ? normalCellHeight :largeCellHeight
+        case [2,0]: //Notes Cell
+            return largeCellHeight
+            
+        default: return normalCellHeight
+        }
     }
-}
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     switch (indexPath) {
-    case [1,0]:
-        isPickerHidden = !isPickerHidden
-        dueDateLabel.textColor = isPickerHidden ? .black : tableView.tintColor
+        case [1,0]:
+            isPickerHidden = !isPickerHidden
+            dueDateLabel.textColor = isPickerHidden ? .black : tableView.tintColor
 
-        tableView.beginUpdates()
-        tableView.endUpdates()
+            tableView.beginUpdates()
+            tableView.endUpdates()
 
-    default: break
-    }
+        default: break
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,4 +115,6 @@ class ToDoViewController : UITableViewController {
     }
     
     
+
 }
+
