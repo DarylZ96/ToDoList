@@ -1,6 +1,9 @@
 # ToDoList
 Project week 5
 
+The ToDoList will let you create tasks and modify previous tasks. By tapping the checkmark you can "fullfill" the task.
+
+
 ### Some screenshots of the application in portrait mode
 
 ![ToDoList](/doc/ToDoList.png)
